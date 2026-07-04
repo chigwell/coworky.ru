@@ -4,6 +4,8 @@ import "./styles/modal.css";
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const DownloadPage = lazy(() => import("./pages/DownloadPage.jsx"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage.jsx"));
+const TermsPage = lazy(() => import("./pages/TermsPage.jsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 const THEME_STORAGE_KEY = "coworky-theme";
@@ -20,6 +22,8 @@ function getInitialTheme() {
 function routeFromPath(pathname) {
   if (pathname === "/") return "home";
   if (pathname === "/download") return "download";
+  if (pathname === "/privacy") return "privacy";
+  if (pathname === "/terms") return "terms";
   return "not-found";
 }
 
@@ -63,6 +67,10 @@ export default function App() {
       <Suspense fallback={null}>
         {route === "download" ? (
           <DownloadPage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} />
+        ) : route === "privacy" ? (
+          <PrivacyPage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} />
+        ) : route === "terms" ? (
+          <TermsPage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} />
         ) : route === "not-found" ? (
           <NotFoundPage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} />
         ) : (

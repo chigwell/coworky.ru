@@ -55,6 +55,26 @@ export function applyDownloadMetadata() {
   setCanonical("https://coworky.ru/download");
 }
 
+export function applyPrivacyMetadata() {
+  document.title = "Политика обработки данных — Coworky";
+  setMetaByName(
+    "description",
+    "Политика обработки персональных данных сервиса Coworky: состав данных, цели обработки, хранение технических данных авторизации и контакты поддержки.",
+  );
+  setMetaByName("robots", "index,follow");
+  setCanonical("https://coworky.ru/privacy");
+}
+
+export function applyTermsMetadata() {
+  document.title = "Пользовательское соглашение — Coworky";
+  setMetaByName(
+    "description",
+    "Пользовательское соглашение Coworky: образовательный ресурс для работы с ИИ, ограничения ответственности, права на модели и контакты поддержки.",
+  );
+  setMetaByName("robots", "index,follow");
+  setCanonical("https://coworky.ru/terms");
+}
+
 export function applyNotFoundMetadata() {
   document.title = "Страница не найдена — Coworky";
   setMetaByName(

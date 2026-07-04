@@ -5,6 +5,7 @@ import { ThemeToggle } from "./ThemeToggle.jsx";
 export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
   const isDownload = type === "download";
   const isHome = type === "home";
+  const isLegal = type === "legal";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const mobileLinks = isDownload
     ? [
@@ -39,6 +40,13 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
             <a href="#use-cases">Сценарии</a>
             <a href="#pricing">Цены моделей</a>
             <a href="#download">Скачать</a>
+          </div>
+        )}
+        {isLegal && (
+          <div className="nav-links" aria-label="Правовые документы">
+            <a href="/terms">Соглашение</a>
+            <a href="/privacy">Политика данных</a>
+            <a href="/download">Скачать</a>
           </div>
         )}
         <div className="nav-actions">
