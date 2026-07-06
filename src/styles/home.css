@@ -387,6 +387,21 @@ html[data-theme="dark"] .button-ghost {
   color: var(--accent);
 }
 
+.button:disabled,
+.button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+}
+
+.button:disabled:hover,
+.button[aria-disabled="true"]:hover {
+  border-color: var(--border);
+  color: var(--text-primary);
+  background: var(--surface-card);
+  transform: none;
+}
+
 .button svg {
   width: 18px;
   height: 18px;
@@ -1134,27 +1149,40 @@ html[data-theme="dark"] .model-logo[data-provider="Qwen"] {
   padding: 28px;
 }
 
+.payment-card {
+  display: flex;
+  flex-direction: column;
+}
+
 .payment-card strong {
-  display: block;
-  margin-top: 22px;
+  display: grid;
+  min-height: 92px;
+  place-items: center;
+  margin-top: auto;
   color: var(--accent);
   font-size: 34px;
   line-height: 1.05;
   letter-spacing: -0.05em;
   font-weight: 330;
+  text-align: center;
 }
 
 .payment-logo {
   display: block;
   width: min(92px, 44%);
-  height: auto;
-  margin: 22px auto 0;
+  height: 92px;
+  margin: auto auto 0;
+  object-fit: contain;
 }
 
 .download-card {
   display: flex;
   flex-direction: column;
   min-height: 320px;
+}
+
+.download-card p {
+  min-height: 72px;
 }
 
 .download-card .os-icon {
@@ -1175,6 +1203,7 @@ html[data-theme="dark"] .model-logo[data-provider="Qwen"] {
 }
 
 .download-note {
+  min-height: 40px;
   margin-top: 24px;
   color: var(--text-muted);
   font-size: 13px;

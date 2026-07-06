@@ -32,12 +32,12 @@ export function applyHomeMetadata() {
   document.title = "Coworky — ИИ для Word, Excel, PDF и презентаций без VPN";
   setMetaByName(
     "description",
-    "Desktop-приложение Coworky помогает работать с Excel, Word, презентациями, PDF и другими документами через сильные ИИ-модели. Без VPN и прокси. Оплата только за использование.",
+    "Desktop-приложение Coworky помогает работать с Excel, Word, презентациями, PDF и другими документами через ИИ-модели. Оплата информационно-образовательных ИТ-услуг только за фактические задачи.",
   );
   setMetaByProperty("og:title", "Coworky — ИИ для ваших рабочих документов");
   setMetaByProperty(
     "og:description",
-    "Загружайте документы, задавайте вопросы, сверяйте таблицы, готовьте ответы и презентации. Windows и macOS. Пополнение от 100 ₽.",
+    "Загружайте документы, задавайте вопросы, сверяйте таблицы, готовьте ответы и презентации. Windows доступен, macOS готовится. Предоплата услуг от 100 ₽.",
   );
   setMetaByProperty("og:type", "website");
   setMetaByProperty("og:url", "https://coworky.ru/");
@@ -46,10 +46,10 @@ export function applyHomeMetadata() {
 }
 
 export function applyDownloadMetadata() {
-  document.title = "Скачать Coworky — Windows .exe и macOS .dmg";
+  document.title = "Скачать Coworky — Windows .zip, macOS скоро";
   setMetaByName(
     "description",
-    "Скачайте desktop-приложение Coworky для Windows или macOS. Работа с документами через ИИ-модели, пополнение от 100 ₽, оплата только за использование.",
+    "Скачайте desktop-приложение Coworky для Windows. Версия для macOS скоро появится. Работа с документами через ИИ-модели, предоплата информационно-образовательных ИТ-услуг от 100 ₽.",
   );
   setMetaByName("robots", "index,follow");
   setCanonical("https://coworky.ru/download");
@@ -69,7 +69,7 @@ export function applyTermsMetadata() {
   document.title = "Пользовательское соглашение — Coworky";
   setMetaByName(
     "description",
-    "Пользовательское соглашение Coworky: образовательный ресурс для работы с ИИ, ограничения ответственности, права на модели и контакты поддержки.",
+    "Пользовательское соглашение Coworky: информационно-образовательные и консультационные ИТ-услуги по работе с ИИ, ограничения ответственности и контакты.",
   );
   setMetaByName("robots", "index,follow");
   setCanonical("https://coworky.ru/terms");

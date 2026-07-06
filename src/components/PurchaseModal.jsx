@@ -14,29 +14,30 @@ export function PurchaseModal({ isOpen, onClose }) {
           <span aria-hidden="true" />
           <span aria-hidden="true" />
         </button>
-        <div className="section-label">Код пополнения</div>
-        <h2 id="purchase-title">Пополнить баланс Coworky</h2>
+        <div className="section-label">Предоплата услуг</div>
+        <h2 id="purchase-title">Оплатить услуги Coworky</h2>
         <p>
-          Лицензионный код пополняет баланс Coworky. После оплаты введите код в приложении и расходуйте баланс только
-          на фактические запросы к выбранным ИИ‑моделям.
+          Код предоплаты учитывает оплаченный объем информационно-образовательных и консультационных
+          ИТ-услуг Coworky. После оплаты введите код в приложении; баланс будет списываться только за
+          фактически выполненные ИИ-задачи.
         </p>
         <div className="purchase-options">
           <article>
             <strong>от 100 ₽</strong>
-            <span>для первых задач и тестирования на реальных документах</span>
+            <span>для первых консультационных ИТ-задач на реальных документах</span>
           </article>
           <article>
             <strong>СПБ</strong>
-            <span>быстрое пополнение для физических лиц</span>
+            <span>быстрая оплата услуг для физических лиц</span>
           </article>
           <article>
             <strong>Счёт</strong>
-            <span>оплата для ИП и юридических лиц</span>
+            <span>оплата услуг для ИП и юридических лиц по запросу</span>
           </article>
         </div>
         <div className="purchase-actions">
-          <a className="button button-primary" href="mailto:support@coworky.ru?subject=Пополнить%20баланс%20Coworky">
-            Пополнить баланс
+          <a className="button button-primary" href="mailto:support@coworky.ru?subject=Оплатить%20услуги%20Coworky">
+            Оплатить услуги
           </a>
           <button className="button button-ghost" type="button" onClick={onClose}>
             Закрыть

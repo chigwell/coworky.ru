@@ -12,21 +12,21 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
         { href: "/", label: "Главная" },
         { href: "#windows", label: "Windows" },
         { href: "#macos", label: "macOS" },
-        { href: "#purchase-code", label: "Пополнить баланс", purchase: true },
+        { href: "#purchase-code", label: "Оплатить услуги", purchase: true },
       ]
     : isHome
       ? [
           { href: "#docs", label: "Документы" },
           { href: "#workflow", label: "Как работает" },
           { href: "#use-cases", label: "Сценарии" },
-          { href: "#pricing", label: "Цены моделей" },
+          { href: "#pricing", label: "Стоимость услуг" },
           { href: "/download", label: "Скачать" },
-          { href: "#purchase-code", label: "Пополнить баланс", purchase: true },
+          { href: "#purchase-code", label: "Оплатить услуги", purchase: true },
         ]
     : [
         { href: "/", label: "Главная" },
         { href: "/download", label: "Скачать" },
-        { href: "#purchase-code", label: "Пополнить баланс", purchase: true },
+        { href: "#purchase-code", label: "Оплатить услуги", purchase: true },
       ];
 
   return (
@@ -38,7 +38,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
             <a href="#docs">Документы</a>
             <a href="#workflow">Как работает</a>
             <a href="#use-cases">Сценарии</a>
-            <a href="#pricing">Цены моделей</a>
+            <a href="#pricing">Стоимость услуг</a>
             <a href="#download">Скачать</a>
           </div>
         )}
@@ -53,7 +53,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
           <ThemeToggle onToggleTheme={onToggleTheme} />
           {isDownload ? (
             <button className="button button-primary" type="button" onClick={onOpenPurchase}>
-              Пополнить баланс
+              Оплатить услуги
             </button>
           ) : (
             <>
@@ -61,7 +61,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
                 Скачать
               </a>
               <button className="button button-primary" type="button" onClick={onOpenPurchase}>
-                Пополнить баланс
+                Оплатить услуги
               </button>
             </>
           )}

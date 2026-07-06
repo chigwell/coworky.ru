@@ -197,11 +197,12 @@ export function PricingSection({ theme }) {
   return (
     <section className="section section-band" id="pricing">
       <div className="container">
-        <div className="section-label">Pay as you go</div>
-        <h2 className="section-title">Прозрачная цена за фактическое использование моделей.</h2>
+        <div className="section-label">Расчет услуг</div>
+        <h2 className="section-title">Прозрачная стоимость ИИ-задач внутри сервиса.</h2>
         <p className="section-copy">
-          Coworky показывает стоимость ввода и вывода по каждой модели, чтобы вы могли выбрать подходящую мощность
-          под задачу и платить только за реальные запросы.
+          Coworky показывает расчетные показатели по каждой модели, чтобы вы могли выбрать подходящую
+          мощность под задачу. Оплата учитывается как предоплата информационно-образовательных и
+          консультационных ИТ-услуг, а списание происходит только за выполненные запросы.
         </p>
         <div className="price-toolbar">
           {state.isLoading ? (
@@ -211,13 +212,13 @@ export function PricingSection({ theme }) {
             </p>
           ) : (
             <p className="price-status">
-              Цены актуальны на <strong>{loadedAtText}</strong>. Показано <strong>{state.models.length}</strong>{" "}
-              моделей.
+              Расчетные показатели актуальны на <strong>{loadedAtText}</strong>. Показано <strong>{state.models.length}</strong>{" "}
+              расчетных вариантов.
             </p>
           )}
           {sortedModels.length > 6 ? (
             <button className="button button-ghost" type="button" onClick={() => setShowAllModels((value) => !value)}>
-              {showAllModels ? "Свернуть список" : `Показать все модели (${sortedModels.length})`}
+              {showAllModels ? "Свернуть список" : `Показать все варианты (${sortedModels.length})`}
             </button>
           ) : null}
         </div>
