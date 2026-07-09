@@ -26,6 +26,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
     : [
         { href: "/", label: "Главная" },
         { href: "/download", label: "Скачать" },
+        { href: "/terms#refund", label: "Оплата и возврат" },
         { href: "#purchase-code", label: "Оплатить услуги", purchase: true },
       ];
 
@@ -45,6 +46,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
         {isLegal && (
           <div className="nav-links" aria-label="Правовые документы">
             <a href="/terms">Соглашение</a>
+            <a href="/terms#refund">Оплата и возврат</a>
             <a href="/privacy">Политика данных</a>
             <a href="/download">Скачать</a>
           </div>

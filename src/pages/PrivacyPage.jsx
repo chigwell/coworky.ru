@@ -36,10 +36,11 @@ export default function PrivacyPage({ onToggleTheme, onOpenPurchase }) {
               данных».
             </p>
             <p>
-              Оператором данных в рамках настоящей политики выступает администрация сервиса CoWorky.ru.
-              Для любых обращений используется единый контактный адрес{" "}
+              Оператором данных в рамках настоящей политики выступает самозанятый Евстафьев Евгений
+              Олегович, ИНН 590504961420, город Пермь. Для любых обращений используется единый
+              контактный адрес{" "}
               <a href="mailto:support@coworky.ru">support@coworky.ru</a>, телефон{" "}
-              <a href="tel:+79956677137">+7 995 667-71-37</a>. Контактное лицо: Евстафьев Е.О.
+              <a href="tel:+79956677137">+7 995 667-71-37</a>.
             </p>
           </section>
 
@@ -155,8 +156,8 @@ export default function PrivacyPage({ onToggleTheme, onOpenPurchase }) {
             <p>
               По вопросам обработки данных, доступа, оплаты, поддержки и удаления учетных данных
               обращайтесь по адресу <a href="mailto:support@coworky.ru">support@coworky.ru</a> или по
-              телефону <a href="tel:+79956677137">+7 995 667-71-37</a>. Контактное лицо: Евстафьев
-              Е.О.
+              телефону <a href="tel:+79956677137">+7 995 667-71-37</a>. Оператор: самозанятый
+              Евстафьев Евгений Олегович, ИНН 590504961420, город Пермь.
             </p>
           </section>
         </article>
@@ -177,6 +178,7 @@ export default function PrivacyPage({ onToggleTheme, onOpenPurchase }) {
               <a href="#purchase-code" data-purchase-code>
                 Оплатить услуги
               </a>
+              <a href="/terms#refund">Оплата и возврат</a>
               <a href="mailto:support@coworky.ru">Поддержка</a>
             </div>
           </div>

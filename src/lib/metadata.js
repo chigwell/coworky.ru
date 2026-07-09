@@ -46,7 +46,7 @@ export function applyHomeMetadata() {
 }
 
 export function applyDownloadMetadata() {
-  document.title = "Скачать Coworky — Windows .zip, macOS скоро";
+  document.title = "Скачать Coworky — Windows .exe, macOS скоро";
   setMetaByName(
     "description",
     "Скачайте desktop-приложение Coworky для Windows. Версия для macOS скоро появится. Работа с документами через ИИ-модели, предоплата информационно-образовательных ИТ-услуг от 100 ₽.",
@@ -73,6 +73,26 @@ export function applyTermsMetadata() {
   );
   setMetaByName("robots", "index,follow");
   setCanonical("https://coworky.ru/terms");
+}
+
+export function applyPaymentSuccessMetadata() {
+  document.title = "Проверка оплаты — Coworky";
+  setMetaByName(
+    "description",
+    "Страница проверки оплаты Coworky и выдачи кода пополнения после подтверждения платежа.",
+  );
+  setMetaByName("robots", "noindex,follow");
+  setCanonical("https://coworky.ru/success");
+}
+
+export function applyPaymentFailMetadata() {
+  document.title = "Оплата не завершена — Coworky";
+  setMetaByName(
+    "description",
+    "Страница незавершенной оплаты Coworky с возможностью повторить платеж или обратиться в поддержку.",
+  );
+  setMetaByName("robots", "noindex,follow");
+  setCanonical("https://coworky.ru/fail");
 }
 
 export function applyNotFoundMetadata() {

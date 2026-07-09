@@ -6,6 +6,8 @@ const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const DownloadPage = lazy(() => import("./pages/DownloadPage.jsx"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage.jsx"));
 const TermsPage = lazy(() => import("./pages/TermsPage.jsx"));
+const PaymentSuccessPage = lazy(() => import("./pages/PaymentSuccessPage.jsx"));
+const PaymentFailPage = lazy(() => import("./pages/PaymentFailPage.jsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 const THEME_STORAGE_KEY = "coworky-theme";
@@ -24,12 +26,15 @@ function routeFromPath(pathname) {
   if (pathname === "/download") return "download";
   if (pathname === "/privacy") return "privacy";
   if (pathname === "/terms") return "terms";
+  if (pathname === "/success") return "success";
+  if (pathname === "/fail") return "fail";
   return "not-found";
 }
 
 export default function App() {
   const [theme, setTheme] = useState(getInitialTheme);
   const [isPurchaseOpen, setIsPurchaseOpen] = useState(false);
+  const [purchaseInitialPayment, setPurchaseInitialPayment] = useState(null);
   const route = useMemo(() => routeFromPath(window.location.pathname), []);
 
   useEffect(() => {
@@ -41,12 +46,19 @@ export default function App() {
     setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
   };
 
+  const openPurchase = (initialPayment = null) => {
+    const paymentDefaults =
+      initialPayment && typeof initialPayment === "object" && !("nativeEvent" in initialPayment) ? initialPayment : null;
+    setPurchaseInitialPayment(paymentDefaults);
+    setIsPurchaseOpen(true);
+  };
+
   useEffect(() => {
     const handlePurchaseClick = (event) => {
       const trigger = event.target.closest("[data-purchase-code]");
       if (!trigger) return;
       event.preventDefault();
-      setIsPurchaseOpen(true);
+      openPurchase();
     };
 
     document.addEventListener("click", handlePurchaseClick);
@@ -66,18 +78,26 @@ export default function App() {
     <>
       <Suspense fallback={null}>
         {route === "download" ? (
-          <DownloadPage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} />
+          <DownloadPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : route === "privacy" ? (
-          <PrivacyPage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} />
+          <PrivacyPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : route === "terms" ? (
-          <TermsPage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} />
+          <TermsPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
+        ) : route === "success" ? (
+          <PaymentSuccessPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
+        ) : route === "fail" ? (
+          <PaymentFailPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : route === "not-found" ? (
-          <NotFoundPage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} />
+          <NotFoundPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : (
-          <HomePage onToggleTheme={toggleTheme} onOpenPurchase={() => setIsPurchaseOpen(true)} theme={theme} />
+          <HomePage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} theme={theme} />
         )}
       </Suspense>
-      <PurchaseModal isOpen={isPurchaseOpen} onClose={() => setIsPurchaseOpen(false)} />
+      <PurchaseModal
+        isOpen={isPurchaseOpen}
+        onClose={() => setIsPurchaseOpen(false)}
+        initialPayment={purchaseInitialPayment}
+      />
     </>
   );
 }

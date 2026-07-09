@@ -408,6 +408,38 @@ h1 {
   flex: 1 1 190px;
 }
 
+.virus-badge {
+  display: inline-flex;
+  flex: 1 1 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  border: 1px solid color-mix(in srgb, #0f8a5f 34%, var(--border));
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #0f8a5f;
+  font-size: 13px;
+  line-height: 1.15;
+  font-weight: 560;
+  background: color-mix(in srgb, #0f8a5f 8%, var(--surface-card));
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.virus-badge:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, #0f8a5f 58%, var(--border));
+  background: color-mix(in srgb, #0f8a5f 12%, var(--surface-card));
+}
+
+.virus-badge svg {
+  flex: 0 0 auto;
+}
+
 .notice {
   margin-top: 24px;
   border: 1px solid var(--border);
@@ -420,7 +452,7 @@ h1 {
 
 .steps {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
   margin: 72px 0;
 }
@@ -451,6 +483,10 @@ h1 {
   margin-top: 12px;
   color: var(--text-secondary);
   line-height: 1.55;
+}
+
+.step a {
+  color: var(--accent);
 }
 
 .footer {

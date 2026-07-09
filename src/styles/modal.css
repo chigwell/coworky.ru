@@ -13,6 +13,8 @@
 .purchase-modal {
   position: relative;
   width: min(100%, 560px);
+  max-height: calc(100vh - 44px);
+  overflow: auto;
   border: 1px solid color-mix(in srgb, var(--border-strong) 62%, transparent);
   border-radius: 28px;
   padding: 30px;
@@ -40,6 +42,10 @@
   line-height: 1.55;
 }
 
+.purchase-modal a:not(.button) {
+  color: var(--accent);
+}
+
 .modal-close {
   position: absolute;
   top: 18px;
@@ -54,6 +60,11 @@
   color: var(--text-primary);
   background: color-mix(in srgb, var(--surface-card) 78%, transparent);
   cursor: pointer;
+}
+
+.modal-close:disabled {
+  cursor: wait;
+  opacity: 0.56;
 }
 
 .modal-close span {
@@ -110,6 +121,72 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 26px;
+}
+
+.purchase-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.purchase-field {
+  display: grid;
+  gap: 8px;
+}
+
+.purchase-field span {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 520;
+}
+
+.purchase-field input {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 13px 14px;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--surface-card-solid, var(--surface-card)) 84%, transparent);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.purchase-field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.purchase-field input[aria-invalid="true"] {
+  border-color: #d84f68;
+}
+
+.purchase-field input:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.purchase-field small {
+  min-height: 18px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.purchase-field input[aria-invalid="true"] + small,
+.purchase-alert {
+  color: #b4233f;
+}
+
+.purchase-alert {
+  border: 1px solid color-mix(in srgb, #d84f68 58%, transparent);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, #d84f68 9%, var(--surface-card-solid, var(--surface-card)));
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 @media (max-width: 760px) {
