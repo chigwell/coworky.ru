@@ -32,12 +32,12 @@ export function applyHomeMetadata() {
   document.title = "Coworky — ИИ для Word, Excel, PDF и презентаций без VPN";
   setMetaByName(
     "description",
-    "Desktop-приложение Coworky помогает работать с Excel, Word, презентациями, PDF и другими документами через ИИ-модели. Оплата информационно-образовательных ИТ-услуг только за фактические задачи.",
+    "Desktop-приложение Coworky помогает работать с Excel, Word, презентациями, PDF и другими документами через ИИ-модели. Баланс пополняется кодом и расходуется только за фактические задачи.",
   );
   setMetaByProperty("og:title", "Coworky — ИИ для ваших рабочих документов");
   setMetaByProperty(
     "og:description",
-    "Загружайте документы, задавайте вопросы, сверяйте таблицы, готовьте ответы и презентации. Windows доступен, macOS готовится. Предоплата услуг от 100 ₽.",
+    "Загружайте документы, задавайте вопросы, сверяйте таблицы, готовьте ответы и презентации. Windows доступен, macOS готовится. Пополнение баланса от 100 ₽.",
   );
   setMetaByProperty("og:type", "website");
   setMetaByProperty("og:url", "https://coworky.ru/");
@@ -49,7 +49,7 @@ export function applyDownloadMetadata() {
   document.title = "Скачать Coworky — Windows .exe, macOS скоро";
   setMetaByName(
     "description",
-    "Скачайте desktop-приложение Coworky для Windows. Версия для macOS скоро появится. Работа с документами через ИИ-модели, предоплата информационно-образовательных ИТ-услуг от 100 ₽.",
+    "Скачайте desktop-приложение Coworky для Windows. Версия для macOS скоро появится. Работа с документами через ИИ-модели, пополнение баланса кодом от 100 ₽.",
   );
   setMetaByName("robots", "index,follow");
   setCanonical("https://coworky.ru/download");
@@ -76,7 +76,7 @@ export function applyTermsMetadata() {
 }
 
 export function applyPaymentSuccessMetadata() {
-  document.title = "Проверка оплаты — Coworky";
+  document.title = "Проверка пополнения — Coworky";
   setMetaByName(
     "description",
     "Страница проверки оплаты Coworky и выдачи кода пополнения после подтверждения платежа.",
@@ -86,13 +86,23 @@ export function applyPaymentSuccessMetadata() {
 }
 
 export function applyPaymentFailMetadata() {
-  document.title = "Оплата не завершена — Coworky";
+  document.title = "Пополнение не завершено — Coworky";
   setMetaByName(
     "description",
     "Страница незавершенной оплаты Coworky с возможностью повторить платеж или обратиться в поддержку.",
   );
   setMetaByName("robots", "noindex,follow");
   setCanonical("https://coworky.ru/fail");
+}
+
+export function applyTopUpMetadata() {
+  document.title = "Как пополнить баланс — Coworky";
+  setMetaByName(
+    "description",
+    "Краткая инструкция Coworky: как купить код пополнения от 100 ₽ через Robokassa и активировать Top-up code в приложении.",
+  );
+  setMetaByName("robots", "index,follow");
+  setCanonical("https://coworky.ru/top-up");
 }
 
 export function applyNotFoundMetadata() {

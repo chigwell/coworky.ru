@@ -37,13 +37,13 @@ export default function PaymentFailPage({ onToggleTheme, onOpenPurchase }) {
       <main className="payment-main">
         <section className="container payment-hero" aria-labelledby="payment-fail-title">
           <div className="payment-copy">
-            <div className="section-label">Оплата не завершена</div>
+            <div className="section-label">Пополнение не завершено</div>
             <h1 id="payment-fail-title" className="payment-title">
               Платеж не прошел или был отменен.
             </h1>
             <p>
-              Деньги не были подтверждены платежной системой. Можно повторить оплату или написать в поддержку,
-              указав id заказа.
+              Платеж не был подтвержден платежной системой, поэтому код пополнения не создан. Можно
+              повторить пополнение баланса или написать в поддержку, указав id заказа.
             </p>
             <dl className="payment-details">
               <div>
@@ -59,7 +59,7 @@ export default function PaymentFailPage({ onToggleTheme, onOpenPurchase }) {
             </dl>
             <div className="payment-actions">
               <button className="button button-primary" type="button" onClick={handleRetry}>
-                Повторить оплату
+                Пополнить баланс снова
               </button>
               <a className="button button-ghost" href="/">
                 На главную

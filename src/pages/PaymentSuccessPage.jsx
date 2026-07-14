@@ -242,9 +242,9 @@ export default function PaymentSuccessPage({ onToggleTheme, onOpenPurchase }) {
       <main className="payment-main">
         <section className="container payment-hero" aria-labelledby="payment-success-title">
           <div className="payment-copy">
-            <div className="section-label">Проверка оплаты</div>
+            <div className="section-label">Проверка пополнения</div>
             <h1 id="payment-success-title" className="payment-title">
-              {state.phase === "paid" ? "Оплата подтверждена." : "Проверяем платеж."}
+              {state.phase === "paid" ? "Пополнение подтверждено." : "Проверяем платеж."}
             </h1>
             <p>{state.message}</p>
             {state.phase === "waiting" ? (
@@ -267,6 +267,10 @@ export default function PaymentSuccessPage({ onToggleTheme, onOpenPurchase }) {
                 <button className="button button-primary" type="button" onClick={handleCopy}>
                   {copyStatus === "copied" ? "Код скопирован" : "Скопировать код"}
                 </button>
+                <small>
+                  Активируйте код в приложении: Настройки -&gt; Биллинг / расходы -&gt; Top-up code -&gt; Redeem.{" "}
+                  <a href="/top-up">Открыть инструкцию</a>
+                </small>
                 {copyStatus === "failed" ? <small>Не удалось скопировать автоматически. Выделите код вручную.</small> : null}
               </div>
             ) : null}
@@ -276,7 +280,7 @@ export default function PaymentSuccessPage({ onToggleTheme, onOpenPurchase }) {
             state.phase === "error" ? (
               <div className="payment-actions">
                 <button className="button button-primary" type="button" onClick={handleRetry}>
-                  Повторить оплату
+                  Пополнить баланс снова
                 </button>
                 <a className="button button-ghost" href="mailto:support@coworky.ru">
                   support@coworky.ru

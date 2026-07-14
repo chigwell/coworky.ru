@@ -8,6 +8,7 @@ const PrivacyPage = lazy(() => import("./pages/PrivacyPage.jsx"));
 const TermsPage = lazy(() => import("./pages/TermsPage.jsx"));
 const PaymentSuccessPage = lazy(() => import("./pages/PaymentSuccessPage.jsx"));
 const PaymentFailPage = lazy(() => import("./pages/PaymentFailPage.jsx"));
+const TopUpPage = lazy(() => import("./pages/TopUpPage.jsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 const THEME_STORAGE_KEY = "coworky-theme";
@@ -28,6 +29,7 @@ function routeFromPath(pathname) {
   if (pathname === "/terms") return "terms";
   if (pathname === "/success") return "success";
   if (pathname === "/fail") return "fail";
+  if (pathname === "/top-up") return "top-up";
   return "not-found";
 }
 
@@ -87,6 +89,8 @@ export default function App() {
           <PaymentSuccessPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : route === "fail" ? (
           <PaymentFailPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
+        ) : route === "top-up" ? (
+          <TopUpPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : route === "not-found" ? (
           <NotFoundPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : (

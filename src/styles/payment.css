@@ -109,6 +109,10 @@
   font-size: 13px;
 }
 
+.topup-code-box a {
+  color: var(--accent);
+}
+
 .payment-spinner {
   width: 42px;
   height: 42px;

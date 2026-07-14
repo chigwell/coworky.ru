@@ -12,7 +12,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
         { href: "/", label: "Главная" },
         { href: "#windows", label: "Windows" },
         { href: "#macos", label: "macOS" },
-        { href: "#purchase-code", label: "Оплатить услуги", purchase: true },
+        { href: "#purchase-code", label: "Пополнить баланс", purchase: true },
       ]
     : isHome
       ? [
@@ -21,13 +21,14 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
           { href: "#use-cases", label: "Сценарии" },
           { href: "#pricing", label: "Стоимость услуг" },
           { href: "/download", label: "Скачать" },
-          { href: "#purchase-code", label: "Оплатить услуги", purchase: true },
+          { href: "#purchase-code", label: "Пополнить баланс", purchase: true },
         ]
     : [
         { href: "/", label: "Главная" },
         { href: "/download", label: "Скачать" },
+        { href: "/top-up", label: "Как пополнить" },
         { href: "/terms#refund", label: "Оплата и возврат" },
-        { href: "#purchase-code", label: "Оплатить услуги", purchase: true },
+        { href: "#purchase-code", label: "Пополнить баланс", purchase: true },
       ];
 
   return (
@@ -47,6 +48,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
           <div className="nav-links" aria-label="Правовые документы">
             <a href="/terms">Соглашение</a>
             <a href="/terms#refund">Оплата и возврат</a>
+            <a href="/top-up">Как пополнить</a>
             <a href="/privacy">Политика данных</a>
             <a href="/download">Скачать</a>
           </div>
@@ -55,7 +57,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
           <ThemeToggle onToggleTheme={onToggleTheme} />
           {isDownload ? (
             <button className="button button-primary" type="button" onClick={onOpenPurchase}>
-              Оплатить услуги
+              Пополнить баланс
             </button>
           ) : (
             <>
@@ -63,7 +65,7 @@ export function Header({ type = "home", onToggleTheme, onOpenPurchase }) {
                 Скачать
               </a>
               <button className="button button-primary" type="button" onClick={onOpenPurchase}>
-                Оплатить услуги
+                Пополнить баланс
               </button>
             </>
           )}

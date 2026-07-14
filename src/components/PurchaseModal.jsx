@@ -12,19 +12,19 @@ function normalizeAmount(value) {
 
 function validateAmount(value) {
   const normalized = normalizeAmount(value);
-  if (!normalized) return "Укажите сумму оплаты.";
+  if (!normalized) return "Укажите сумму пополнения.";
   if (!/^\d+(\.\d{1,2})?$/.test(normalized)) return "Введите сумму в рублях, например 100 или 1500.50.";
 
   const amount = Number(normalized);
   if (!Number.isFinite(amount)) return "Введите корректную сумму.";
-  if (amount < MIN_AMOUNT_RUB) return "Минимальная сумма оплаты — 100 ₽.";
-  if (amount > MAX_AMOUNT_RUB) return "Максимальная сумма оплаты — 15000 ₽.";
+  if (amount < MIN_AMOUNT_RUB) return "Минимальная сумма пополнения — 100 ₽.";
+  if (amount > MAX_AMOUNT_RUB) return "Максимальная сумма пополнения — 15000 ₽.";
   return "";
 }
 
 function validateEmail(value) {
   const email = String(value || "").trim().toLowerCase();
-  if (!email) return "Укажите email для платежа.";
+  if (!email) return "Укажите email для платежа и проверки кода.";
   if (email.length > 254 || !EMAIL_RE.test(email)) return "Введите корректный email.";
   return "";
 }
@@ -110,12 +110,15 @@ export function PurchaseModal({ isOpen, onClose, initialPayment = null }) {
           <span aria-hidden="true" />
           <span aria-hidden="true" />
         </button>
-        <div className="section-label">Предоплата услуг</div>
-        <h2 id="purchase-title">Оплатить услуги Coworky</h2>
+        <div className="section-label">Пополнение баланса</div>
+        <h2 id="purchase-title">Пополнить баланс Coworky</h2>
         <p>
-          Код предоплаты учитывает оплаченный объем информационно-образовательных и консультационных
-          ИТ-услуг Coworky. После оплаты введите код в приложении; баланс будет списываться только за
-          фактически выполненные ИИ-задачи.
+          Пополнение баланса означает покупку уникального кода для приложения CoWorky. После успешной
+          оплаты через партнера Robokassa скопируйте код и активируйте его в приложении:{" "}
+          <a href="/top-up" target="_blank" rel="noreferrer">
+            инструкция
+          </a>
+          .
         </p>
         <form className="purchase-form" onSubmit={handleSubmit} noValidate>
           <label className="purchase-field">
@@ -160,7 +163,7 @@ export function PurchaseModal({ isOpen, onClose, initialPayment = null }) {
             </div>
           ) : null}
           <p>
-            Минимальная предоплата составляет 100 ₽. Оплачивая услуги, вы принимаете{" "}
+            Минимальная сумма пополнения составляет 100 ₽. Оплачивая код пополнения, вы принимаете{" "}
             <a href="/terms" target="_blank" rel="noreferrer">
               пользовательское соглашение
             </a>{" "}
@@ -171,7 +174,7 @@ export function PurchaseModal({ isOpen, onClose, initialPayment = null }) {
             .
           </p>
           <p>
-            Отказ и возврат неиспользованного баланса оформляются через{" "}
+            Отказ и возврат неиспользованного баланса по коду пополнения оформляются через{" "}
             <a href="mailto:support@coworky.ru">support@coworky.ru</a>; подробный порядок описан в разделе{" "}
             <a href="/terms#refund" target="_blank" rel="noreferrer">
               «Оплата и возврат»
@@ -180,7 +183,7 @@ export function PurchaseModal({ isOpen, onClose, initialPayment = null }) {
           </p>
           <div className="purchase-actions">
             <button className="button button-primary" type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Создаем платеж..." : status === "error" ? "Попробовать снова" : "Оплатить услуги"}
+              {isSubmitting ? "Создаем платеж..." : status === "error" ? "Попробовать снова" : "Пополнить баланс"}
             </button>
             <button className="button button-ghost" type="button" onClick={onClose} disabled={isSubmitting}>
               Закрыть
