@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   FALLBACK_MODELS,
   FALLBACK_USD_RUB,
@@ -27,9 +27,11 @@ function formatRub(usd, usdRub) {
   }).format(rub);
 }
 
-async function loadUsdRubRate() {
+const PRICING_REFRESH_INTERVAL_MS = 3 * 60 * 1000;
+
+async function loadUsdRubRate(options) {
   try {
-    const result = await fetchJsonWithCache("coworky-usd-rub", MOEX_USD_RUB_URL);
+    const result = await fetchJsonWithCache("coworky-usd-rub", MOEX_USD_RUB_URL, options);
     const rate = getMoexCell(result.data.marketdata, ["LAST", "WAPRICE", "MARKETPRICE", "CLOSEPRICE", "LOPENPRICE"]);
     const columns = result.data?.marketdata?.columns || [];
     const row = result.data?.marketdata?.data?.[0] || [];
@@ -51,9 +53,9 @@ async function loadUsdRubRate() {
   }
 }
 
-async function loadModels() {
+async function loadModels(options) {
   try {
-    const result = await fetchJsonWithCache("coworky-llm-models", MODELS_API_URL);
+    const result = await fetchJsonWithCache("coworky-llm-models", MODELS_API_URL, options);
     const models = Array.isArray(result.data?.data) ? result.data.data : [];
     if (models.length === 0) throw new Error("Models list is empty");
     return {
@@ -151,8 +153,11 @@ function ModelCard({ model, theme, usdRub }) {
 
 export function PricingSection({ theme }) {
   const [showAllModels, setShowAllModels] = useState(false);
+  const isMountedRef = useRef(false);
+  const refreshInFlightRef = useRef(false);
   const [state, setState] = useState({
     isLoading: true,
+    isRefreshing: false,
     models: [],
     usdRub: FALLBACK_USD_RUB,
     modelsSource: "fallback",
@@ -161,26 +166,43 @@ export function PricingSection({ theme }) {
     loadedAt: null,
   });
 
-  useEffect(() => {
-    let isMounted = true;
+  const refreshPricing = useCallback(async ({ force = false } = {}) => {
+    if (refreshInFlightRef.current) return;
+    refreshInFlightRef.current = true;
 
-    async function initPricing() {
-      const [rateResult, modelsResult] = await Promise.all([loadUsdRubRate(), loadModels()]);
-      if (!isMounted) return;
+    setState((current) => ({
+      ...current,
+      isLoading: current.models.length === 0,
+      isRefreshing: current.models.length > 0,
+    }));
+
+    try {
+      const [rateResult, modelsResult] = await Promise.all([loadUsdRubRate({ force }), loadModels({ force })]);
+      if (!isMountedRef.current) return;
       setState({
         isLoading: false,
+        isRefreshing: false,
         ...rateResult,
         ...modelsResult,
         loadedAt: new Date(),
       });
+    } finally {
+      refreshInFlightRef.current = false;
     }
+  }, []);
 
-    initPricing();
+  useEffect(() => {
+    isMountedRef.current = true;
+    refreshPricing({ force: true });
+    const intervalId = window.setInterval(() => refreshPricing({ force: true }), PRICING_REFRESH_INTERVAL_MS);
 
     return () => {
-      isMounted = false;
+      isMountedRef.current = false;
+      window.clearInterval(intervalId);
     };
-  }, []);
+  }, [refreshPricing]);
+
+  const handleManualRefresh = () => refreshPricing({ force: true });
 
   const sortedModels = useMemo(() => sortModels(state.models), [state.models]);
   const visibleModels = showAllModels ? sortedModels : sortedModels.slice(0, 6);
@@ -216,11 +238,26 @@ export function PricingSection({ theme }) {
               расчетных вариантов.
             </p>
           )}
-          {sortedModels.length > 6 ? (
-            <button className="button button-ghost" type="button" onClick={() => setShowAllModels((value) => !value)}>
-              {showAllModels ? "Свернуть список" : `Показать все варианты (${sortedModels.length})`}
+          <div className="price-toolbar-actions">
+            <button
+              className="button button-ghost price-refresh-button"
+              type="button"
+              onClick={handleManualRefresh}
+              disabled={state.isLoading || state.isRefreshing}
+              aria-label="Обновить список моделей и цены"
+              title="Обновить список моделей и цены"
+            >
+              <svg className={state.isRefreshing ? "is-spinning" : undefined} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 11a8 8 0 0 0-14.9-4M4 5v4h4M4 13a8 8 0 0 0 14.9 4M20 19v-4h-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {state.isRefreshing ? "Обновляем" : "Обновить"}
             </button>
-          ) : null}
+            {sortedModels.length > 6 ? (
+              <button className="button button-ghost" type="button" onClick={() => setShowAllModels((value) => !value)}>
+                {showAllModels ? "Свернуть список" : `Показать все варианты (${sortedModels.length})`}
+              </button>
+            ) : null}
+          </div>
         </div>
         <div className="model-grid" aria-live="polite">
           {state.isLoading ? (

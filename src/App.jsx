@@ -8,6 +8,7 @@ const PrivacyPage = lazy(() => import("./pages/PrivacyPage.jsx"));
 const TermsPage = lazy(() => import("./pages/TermsPage.jsx"));
 const PaymentSuccessPage = lazy(() => import("./pages/PaymentSuccessPage.jsx"));
 const PaymentFailPage = lazy(() => import("./pages/PaymentFailPage.jsx"));
+const AppPaymentReturnPage = lazy(() => import("./pages/AppPaymentReturnPage.jsx"));
 const TopUpPage = lazy(() => import("./pages/TopUpPage.jsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
@@ -29,6 +30,8 @@ function routeFromPath(pathname) {
   if (pathname === "/terms") return "terms";
   if (pathname === "/success") return "success";
   if (pathname === "/fail") return "fail";
+  if (pathname === "/payment/app/success") return "app-payment-success";
+  if (pathname === "/payment/app/fail") return "app-payment-fail";
   if (pathname === "/top-up") return "top-up";
   return "not-found";
 }
@@ -89,6 +92,12 @@ export default function App() {
           <PaymentSuccessPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : route === "fail" ? (
           <PaymentFailPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
+        ) : route === "app-payment-success" || route === "app-payment-fail" ? (
+          <AppPaymentReturnPage
+            outcome={route === "app-payment-success" ? "success" : "fail"}
+            onToggleTheme={toggleTheme}
+            onOpenPurchase={openPurchase}
+          />
         ) : route === "top-up" ? (
           <TopUpPage onToggleTheme={toggleTheme} onOpenPurchase={openPurchase} />
         ) : route === "not-found" ? (

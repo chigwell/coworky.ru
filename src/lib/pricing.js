@@ -1,7 +1,7 @@
 export const MODELS_API_URL = "https://api.llm7.io/v1/models";
 export const MOEX_USD_RUB_URL =
   "https://iss.moex.com/iss/engines/currency/markets/selt/boards/CETS/securities/USD000UTSTOM.json?iss.meta=off&iss.only=marketdata";
-export const CACHE_TTL_MS = 5 * 60 * 1000;
+export const CACHE_TTL_MS = 3 * 60 * 1000;
 export const PRICE_MARKUP = 1.1;
 export const FALLBACK_USD_RUB = 78.32;
 
@@ -113,8 +113,8 @@ export function readCache(key, options = {}) {
   return null;
 }
 
-export async function fetchJsonWithCache(key, url) {
-  const fresh = readCache(key);
+export async function fetchJsonWithCache(key, url, options = {}) {
+  const fresh = options.force ? null : readCache(key);
   if (fresh) return { data: fresh.data, source: "cache", savedAt: fresh.savedAt };
 
   try {
