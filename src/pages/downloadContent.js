@@ -11,8 +11,9 @@ export const downloadHeroHtml = `      <section class="hero">
             <h2>Windows .exe</h2>
             <p>Скачайте версию для Windows, установите Coworky и активируйте код пополнения баланса, чтобы работать с Excel, Word, PDF, презентациями и папками файлов.</p>
             <div class="download-actions">
-              <a class="button button-primary" href="/CoWorky-3.5.17-win-x64.exe" download>Скачать .exe для Windows</a>
-              <a class="virus-badge" href="https://www.virustotal.com/gui/url/f214737e1bd41a44aec1351d01b81ab35cfb883e76809146fecd612e93ecc165?nocache=1" target="_blank" rel="noopener noreferrer" aria-label="Отчет VirusTotal для установщика Coworky"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 3.2 19 6v5.3c0 4.5-2.8 7.9-7 9.5-4.2-1.6-7-5-7-9.5V6l7-2.8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m8.7 12 2.1 2.1 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Проверено VirusTotal</span></a>
+              <a class="button button-primary" href="/CoWorky-3.5.25-win-x64.exe" download>Скачать .exe для Windows</a>
+              <a class="button button-ghost" href="https://apps.microsoft.com/detail/9nx0g6ndl8nj?cid=DevShareMCLPCB" target="_blank" rel="noopener noreferrer">Установить из MS Store</a>
+              <a class="virus-badge" href="https://www.virustotal.com/gui/url-analysis/u-e0fb1a236c24702f0600d8c4dbec65c6b1adff0a8f786a7c344dd8452c73ae33-b0d7ab82" target="_blank" rel="noopener noreferrer" aria-label="Отчет VirusTotal для установщика Coworky"><span aria-hidden="true">✓</span><span>Проверено VirusTotal</span></a>
               <a class="button button-ghost" href="mailto:support@coworky.ru?subject=Нужен%20установщик%20Coworky%20для%20Windows">Запросить ссылку</a>
             </div>
           </article>

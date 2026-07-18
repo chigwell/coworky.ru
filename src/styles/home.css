@@ -1232,34 +1232,27 @@ html[data-theme="dark"] .model-logo[data-provider="Qwen"] {
 .virus-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
   width: 100%;
-  min-height: 38px;
   margin-top: 10px;
-  border: 1px solid color-mix(in srgb, var(--color-good) 32%, var(--border));
-  border-radius: 999px;
-  padding: 8px 12px;
+  padding: 2px 0;
   color: var(--color-good);
   font-size: 13px;
-  line-height: 1.15;
+  line-height: 1.35;
   font-weight: 560;
-  background: color-mix(in srgb, var(--color-good) 8%, var(--surface-card-solid));
-  transition:
-    border-color 160ms ease,
-    color 160ms ease,
-    background 160ms ease,
-    transform 160ms ease;
+  text-decoration: none;
+  transition: color 160ms ease;
 }
 
 .virus-badge:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--color-good) 58%, var(--border));
-  background: color-mix(in srgb, var(--color-good) 12%, var(--surface-card-solid));
+  color: color-mix(in srgb, var(--color-good) 82%, #00331f);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.virus-badge svg {
+.virus-badge span[aria-hidden="true"] {
   flex: 0 0 auto;
+  font-weight: 760;
 }
 
 .download-note {

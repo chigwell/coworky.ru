@@ -410,34 +410,28 @@ h1 {
 
 .virus-badge {
   display: inline-flex;
-  flex: 1 1 100%;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  min-height: 38px;
-  border: 1px solid color-mix(in srgb, #0f8a5f 34%, var(--border));
-  border-radius: 999px;
-  padding: 8px 12px;
+  flex: 1 1 100%;
+  justify-content: flex-start;
+  padding: 2px 0;
   color: #0f8a5f;
   font-size: 13px;
-  line-height: 1.15;
+  line-height: 1.35;
   font-weight: 560;
-  background: color-mix(in srgb, #0f8a5f 8%, var(--surface-card));
-  transition:
-    border-color 160ms ease,
-    color 160ms ease,
-    background 160ms ease,
-    transform 160ms ease;
+  text-decoration: none;
+  transition: color 160ms ease;
 }
 
 .virus-badge:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, #0f8a5f 58%, var(--border));
-  background: color-mix(in srgb, #0f8a5f 12%, var(--surface-card));
+  color: #0b6f4c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.virus-badge svg {
+.virus-badge span[aria-hidden="true"] {
   flex: 0 0 auto;
+  font-weight: 760;
 }
 
 .notice {

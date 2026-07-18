@@ -71,6 +71,7 @@ export const FALLBACK_MODELS = [
 ];
 
 export const PROVIDER_DETAILS = [
+  { test: (id) => id.startsWith("flux-"), provider: "Flux", lightLogo: "/flux-lettermark-full-color.svg", darkLogo: "/flux-lettermark-full-color.svg" },
   { test: (id) => id.startsWith("gpt-"), provider: "OpenAI", lightLogo: "https://llm7.io/openai.svg", darkLogo: "https://llm7.io/openai.svg" },
   { test: (id) => id.startsWith("claude-"), provider: "Anthropic", lightLogo: "https://llm7.io/claude.svg", darkLogo: "https://llm7.io/claude.svg" },
   { test: (id) => id.startsWith("gemini-"), provider: "Google", lightLogo: "https://llm7.io/gemini.svg", darkLogo: "https://llm7.io/gemini.svg" },
@@ -88,6 +89,8 @@ export const preferredOrder = [
   "gpt-5.5",
   "gpt-5.4",
   "gpt-5.4-mini",
+  "gpt-image",
+  "flux",
   "claude-sonnet-5",
   "claude-opus-4-8",
   "deepseek-v4-flash",
@@ -170,13 +173,14 @@ export function formatContextWindow(model) {
     if (chars >= 1_000) return `${Math.round(chars / 1_000)}k символов`;
     return `${chars.toLocaleString("ru-RU")} символов`;
   }
-  return "контекст не указан";
+  return null;
 }
 
 export function chipsForModel(model) {
   return [
     model.tools_calling ? "tools" : null,
     model.modalities?.input?.includes("image") ? "vision" : null,
+    model.modalities?.output?.includes("image") ? "image" : null,
     model.json_mode ? "json" : null,
     model.stream ? "stream" : null,
     model.reasoning ? "reasoning" : null,

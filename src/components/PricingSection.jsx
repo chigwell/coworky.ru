@@ -103,12 +103,14 @@ function ModelCard({ model, theme, usdRub }) {
   const details = providerDetails(model.id);
   const pricing = model.pricing || {};
   const unit = pricing.unit || "1M tokens";
+  const isImagePricing = model.pricing_mode === "image" || unit === "image";
   const inputPrice = formatRub(pricing.input, usdRub);
   const outputPrice = formatRub(pricing.output, usdRub);
+  const imagePrice = formatRub(pricing.price, usdRub);
   const minPrice = Number.isFinite(Number(pricing.minimum_request_price_usd))
     ? formatRub(pricing.minimum_request_price_usd, usdRub)
     : null;
-  const chips = [formatContextWindow(model), ...chipsForModel(model)].slice(0, 5);
+  const chips = [formatContextWindow(model), ...chipsForModel(model)].filter(Boolean).slice(0, 5);
 
   return (
     <article className="model-card">
@@ -128,18 +130,27 @@ function ModelCard({ model, theme, usdRub }) {
         ))}
       </div>
       <div className="price-lines">
-        <div className="price-line">
-          <span>Ввод</span>
-          <strong>
-            {inputPrice} / {unit}
-          </strong>
-        </div>
-        <div className="price-line">
-          <span>Вывод</span>
-          <strong>
-            {outputPrice} / {unit}
-          </strong>
-        </div>
+        {isImagePricing ? (
+          <div className="price-line">
+            <span>Изображение</span>
+            <strong>{imagePrice} за 1 изображение</strong>
+          </div>
+        ) : (
+          <>
+            <div className="price-line">
+              <span>Ввод</span>
+              <strong>
+                {inputPrice} / {unit}
+              </strong>
+            </div>
+            <div className="price-line">
+              <span>Вывод</span>
+              <strong>
+                {outputPrice} / {unit}
+              </strong>
+            </div>
+          </>
+        )}
         {minPrice ? (
           <div className="price-line">
             <span>Мин. запрос</span>
